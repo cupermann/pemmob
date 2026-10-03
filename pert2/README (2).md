@@ -1,7 +1,7 @@
 # Praktikum Flutter Fundamental — Pertemuan 2
 
 **Nama:** Muhammad Yusuf Bagus Syafaat  
-**NIM:** 123456789
+**NIM:** 20240801041
 
 ## Layout, ListView, dan Navigasi Antar Halaman
 
