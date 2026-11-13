@@ -16,7 +16,7 @@ class Transaksi {
   });
 }
 
-// Data transaksi statis.
+// Data transaksi statis (hard-code).
 const List<Transaksi> daftarTransaksi = [
   Transaksi(
     judul: 'Tarik Dana',
@@ -38,6 +38,7 @@ const List<Transaksi> daftarTransaksi = [
   ),
 ];
 
+// Titik awal aplikasi Flutter.
 void main() {
   runApp(const MyApp());
 }
@@ -59,13 +60,14 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// Halaman utama untuk menampilkan ringkasan tabungan.
 class RingkasanPage extends StatelessWidget {
   const RingkasanPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // AppBar.
+      // AppBar menampilkan judul halaman.
       appBar: AppBar(
         title: const Text('Ringkasan Tabungan'),
         backgroundColor: Colors.red,
@@ -80,7 +82,7 @@ class RingkasanPage extends StatelessWidget {
           itemCount: daftarTransaksi.length + 3,
           itemBuilder: (context, index) {
 
-            // Bagian 1: Kartu ringkasan tabungan.
+            // Bagian 1: Card menampilkan ringkasan tabungan.
             if (index == 0) {
               return Card(
                 color: Colors.teal.shade50,
@@ -106,7 +108,7 @@ class RingkasanPage extends StatelessWidget {
                         children: const [
                           Text('Saldo Saat Ini'),
 
-                          // Expanded mengisi ruang yang tersedia.
+                          // Expanded menggunakan sisa ruang.
                           Expanded(
                             child: Text(
                               'Rp 1.250.000',
@@ -147,16 +149,19 @@ class RingkasanPage extends StatelessWidget {
               );
             }
 
-            // Bagian 2: Row berisi tiga ikon kategori.
+            // Bagian 2: Container mengatur jarak kategori.
             if (index == 1) {
-              return Padding(
+              return Container(
                 padding: const EdgeInsets.symmetric(
                   vertical: 20,
                 ),
+
+                // Row menyusun tiga kategori secara horizontal.
                 child: Row(
                   mainAxisAlignment:
                   MainAxisAlignment.spaceEvenly,
                   children: [
+
                     // Kategori Menabung.
                     Expanded(
                       child: Column(
@@ -220,10 +225,10 @@ class RingkasanPage extends StatelessWidget {
               );
             }
 
-            // Bagian 4: Menampilkan data transaksi.
+            // Bagian 4: Mengambil data transaksi dari list.
             final transaksi = daftarTransaksi[index - 3];
 
-            // Card dan ListTile menyusun setiap transaksi.
+            // Card dan ListTile menampilkan setiap transaksi.
             return Card(
               child: ListTile(
                 title: Text(
@@ -233,10 +238,10 @@ class RingkasanPage extends StatelessWidget {
                   ),
                 ),
 
-                // Tanggal ditampilkan di bawah judul.
+                // Tanggal berada di bawah judul transaksi.
                 subtitle: Text(transaksi.tanggal),
 
-                // Nominal berada di sebelah kanan.
+                // Nominal ditampilkan di sebelah kanan.
                 trailing: Text(
                   transaksi.nominal,
                   style: TextStyle(
